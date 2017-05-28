@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Photo Map</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="32x32">
+</head>
+<!-- <script type="text/javascript" src="js/checkLogin.js"></script> -->
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaa2tLApi588iV8xS40lj2NLH3IKEtkdk&callback=initMap"> -->
+<!-- </script> -->
+
+<body>
+    <header>
+        <a href="index.html">
+            <img src="image/photoMap Logo.PNG" alt="PhotoMap logo">
+        </a>
+    </header>
+    <ul>
+        <li><a href="index.html">Map</a></li>
+        <li><a href="upload.html" id="upload-nav">Upload</a></li>
+        <li><a id="profile-nav" href="profile.html">Profile</a></li>
+        <li id="signin-wrap"><a id="signin" href="login.html">Signin</a></li>
+    </ul>
+    <form id="login-form">
+        <h1>Sign In</h1>
+        <fieldset>
+            <legend>Email</legend>
+            <input type="username" name="username" class="input" placeholder="example@gmail.com" id="email" />
+        </fieldset>
+        <fieldset>
+            <legend>Password</legend>
+            <input type="password" name="password" class="input" placeholder="Password" id="password" />
+        </fieldset>
+        <p><a href="forgot-password.html">Forgot Your Password?</a></p>
+        <p><a href="signup.html">Create a new account</a></p>
+        <input type="submit" class="btn" value="Login" />
+    </form>
+    <div id="snackbar">text</div>
+    <script src="js/jquery.min.js" type="application/javascript"></script>
+    <script type="text/javascript" src="js/changeLogin.js"></script>
+    <script src="js/index.js" type="application/javascript"></script>
+    <script type="text/javascript" src="js/checkLogin.js"></script>
+    <!-- <script src="js/header.js" type="application/javascript"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Photo Map</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaa2tLApi588iV8xS40lj2NLH3IKEtkdk&libraries=places"></script>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/checkLogin.js"></script>
+    <script src="js/googleMap.js"></script>
+    <script type="text/javascript" src="js/imgur.js"></script>
+    <script src="js/drag-and-drop.js"></script>
+    <script type="text/javascript" src="js/changeLogin.js"></script>
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="32x32">
+</head>
+
+<body class="overflowy" onLoad="search()">
+    <input type="checkbox" name="locationSet">
+    <header>
+        <a href="index.html">
+            <img src="image/photoMap Logo.PNG" alt="PhotoMap logo">
+        </a>
+        <ul>
+            <li><a href="index.html">Map</a></li>
+            <li><a href="upload.html" id="upload-nav">Upload</a></li>
+            <li><a id="profile-nav" href="profile.html">Profile</a></li>
+            <li id="signin-wrap"><a id="signin" href="login.html">Signin</a></li>
+        </ul>
+        <h1>Upload Photos:</h1>
+    </header>
+    <div class="dragAndDropWrapper">
+        <div id='finderFiles' data-path='/'>
+            <input type="file" id="fileChooserInput" multiple>
+            <img id="icon" src="image/drag-and-drop.png">
+            <button id="fileChooserButton">Choose Photos</button>
+        </div>
+        <div id='finderDragAndDropDialogue'>
+            <div id='finderDragAndDropDialogueWrapper'>
+                <div id='finderDragAndDropDialogueFiles'>
+                    <!-- parent -->
+                    <div class="dialogueFileImageTemplate">
+                        <div class="dialogueFileImageA1"></div>
+                        <div class="dialogueFileImageB1"></div>
+                        <div class="dialogueFileImageC1"></div>
+                        <div class="dialogueFileImageD1"></div>
+                    </div>
+                    <div class="dialogueFileNameTemplate">
+                        <div class="dialogueFileNameA2"></div>
+                        <div class="dialogueFileNameB2"></div>
+                        <div class="dialogueFileNameC2"></div>
+                        <div class="dialogueFileNameD2"></div>
+                    </div>
+                    <div class="dialogueFooter">
+                        <button id="add">Add more Photos</button>
+                        <button id="currentLocation">Use Current Location</button>
+                        <div id="search">
+                            <input type="text" id="locationInput" placeholder="Type Location">
+                        </div>
+                        <div class="box">
+                            <a class="button" id="finish-button" href="#popup1"><img src="image/back2.png">Finish</a>
+                        </div>
+                        <div id="popup1" class="overlay">
+                            <div class="popup">
+                                <h2>Upload Completed</h2>
+                                <div class="content">
+                                    Your upload was successfully added to your PhotoMap
+                                </div>
+                                <div class="modal-footer">
+                                    <a href='upload.html' class='dialog-buttons' data-dismiss="modal">Upload more Images</a>
+                                    <a href='index.html' class='dialog-buttons'>View photos on map</a>
+                                    <a class="close" href="#">CLOSE</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mikhutin, D. (2017). 'Navigation Set - Arrows, Part One' by Denis Mikhutin. Iconfinder. Retrieved 8 April 2017, from https://www.iconfinder.com/icons/1031520/arrow_download_guardar_save_icon#size=128 -->
+        <!-- </div> -->
+        <div class="loaderContainer">
+            <div id="background"></div>
+            <img id="loader" onload="loadHide()" src="image/loading.gif">
+        </div>
+        <div id="signout" class="overlay">
+            <div class="popup">
+                <h2>Signout</h2>
+                <div class="content">
+                    Are you sure you want to sign out of Photomap?
+                </div>
+                <div class="modal-footer">
+                    <button class='dialog-buttons' onclick="logout()">Yes</button>
+                    <button class='dialog-buttons closex'><a href="#">No</a></button>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

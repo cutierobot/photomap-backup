@@ -1,0 +1,480 @@
+//white #ffffff
+//grey light #e7e6e6
+//dark pink #7d3750
+//light pink #b85d7e
+
+body
+  font-family: 'Roboto', sans-serif
+
+ul
+  list-style-type: none
+  margin: 0
+  padding: 0
+  overflow: hidden
+  background-color: #b85d7e
+
+li
+  float: left
+  a
+    display: block
+    font-size: 20px
+    color: #ffffff
+    text-align: center
+    padding: 14px 16px
+    text-decoration: none
+    font-family: 'Roboto', sans-serif
+    &:hover
+      background-color: #7d3750
+
+#signin
+  text-align: right
+  float: right
+
+h1
+  color: #b85d7e
+  font-family: 'Roboto', sans-serif
+
+/*----------------------------------------------------------------------
+/*drag and drop file upload
+/*.dropZone {
+ *	width: 80%;
+ *	height: 500px;
+ *	border-style: dashed;
+ *	border-width: 5px;
+ *	border-color: #7d3750;
+ *	margin: auto;
+ *	background-color: #e7e6e6;
+ *	text-align: center;
+ *}
+ *div {
+ *	display: block;
+ *}
+ *
+ *.dragenter{
+ *	background-color: #ffffff;
+ *}
+ *
+ *.dragleave{
+ *	background-color: #e7e6e6;
+ *}
+ *
+ *#dad-text {
+ *	font-size: 50px;
+ *	color: #b85d7e;
+ *	margin: auto;
+ *	padding: 0px 50px;
+ *	text-align: center;
+ *}
+ *
+ *.dad-button {
+ *	position: relative;
+ *	background-color: #7d3750;
+ *	font-size: 20px;
+ *	margin-top: 100px;
+ *	margin-left: 50%;
+ *	color: white;
+ *	padding: 10px 15px;
+ *}
+ *.dad-image {
+ *	display: block;
+ *	position: static;
+ *	margin-left: 50%;
+ *	margin-top: 20px;
+ *}
+ *
+ *#input {
+ *	visibility: hidden;
+ *}
+ *#dad-label {
+ *	color: #b85d7e; 
+ *	font-size: 50px;
+ *	text-align: center;
+ *}*/
+
+div
+  &.dragAndDropWrapper
+    position: relative
+    height: 80%
+    background-color: green
+    padding-top: 25px
+  &#finderFiles
+    border-bottom: 1px solid rgb(64, 64, 64)
+    background: #e7e6e6
+    position: absolute
+    overflow: auto
+    // user-select: none
+    width: 80%
+    height: 80%
+    left: 0
+    right: 0
+    margin: auto
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    border-width: 5px
+    border-style: dashed
+    border-color: #7d3750
+    /*background-image: url("image/drag-and-drop.png");
+     *background-repeat: no-repeat;
+     *background-position: center;*/
+
+#icon
+  order: 1
+
+div
+  &.finderDirectory
+    float: left
+    width: 150px
+    height: 100px
+    overflow: hidden
+    &:-webkit-drag
+      opacity: 0.5
+  &.finderIcon
+    background: url('images/Folder 48x48.png') no-repeat center
+    background-size: 48px 48px
+    height: 56px
+    width: 54px
+    margin: 10px auto 3px auto
+  &.finderIconSelected
+    background-color: rgb(204, 204, 204)
+    border-radius: 5px
+  &.finderDirectoryDrop > div.finderIcon
+    background-color: rgb(204, 204, 204)
+    border-radius: 5px
+    background-image: url('images/Open Folder 48x48.png')
+  &.finderDirectoryName
+    text-align: center
+
+span.finderDirectoryNameSelected
+  background: rgb(56, 117, 215)
+  border-radius: 8px
+  color: white
+  padding: 1px 7px
+
+div
+  &.finderDirectoryDrop > div.finderDirectoryName > span
+    background: rgb(56, 117, 215)
+    border-radius: 8px
+    color: white
+    padding: 1px 7px
+  &#finderDragAndDropDialogue
+    position: absolute
+    width: 80%
+    height: 80%
+    //top: 202px;
+    left: 0
+    right: 0
+    background: #fff
+    padding: 1px
+    border-radius: 4px
+    display: none
+    border: 3px solid red
+    margin: auto
+    h4
+      margin: 0
+      padding: 10px
+
+img#finderDragAndDropDialogueActivity
+  position: absolute
+  top: 8px
+  right: 50px
+
+div
+  &#finderDragAndDropDialogueProgressMeter
+    position: absolute
+    top: 11px
+    right: 55px
+    width: 210px
+    height: 11px
+    border-radius: 3px
+    border: 1px solid rgb(181, 187, 200)
+    display: none
+    div
+      position: absolute
+      top: 0
+      left: 0
+      //height: 11px;
+      font-size: 0
+      line-height: 0
+      border-top-left-radius: 3px
+      border-bottom-left-radius: 3px
+      background: rgb(225, 228, 233)
+      width: 0
+      display: none
+  &#finderDragAndDropDialogueProgress
+    position: absolute
+    top: 10px
+    right: 10px
+  &#finderDragAndDropDialogueFiles
+    table
+      table-layout: fixed
+      border-collapse: collapse
+      margin: 0px
+      padding: 0px
+      width: 100%
+      height: 100%
+      border: 3px solid green
+      th
+        background: rgb(233, 233, 233)
+        border: 1px solid rgb(222, 222, 222)
+        text-align: left
+        padding: 5px
+      td
+        /*padding: 5px;
+        /* border-left: 1px solid rgb(222, 222, 222);
+         *border-right: 1px solid rgb(222, 222, 222);
+        /*overflow: hidden;*/
+        text-overflow: ellipsis
+        vertical-align: top
+        font-size: 25px
+        text-align: center
+    //parent
+    position: absolute
+    overflow: auto
+    top: 35px
+    right: 5px
+    bottom: 5px
+    left: 5px
+    display: flex
+    flex-direction: column
+    /*border: 1px solid rgb(222, 222, 222);*/
+
+td.finderDragAndDropDialogueFileIcon img
+  max-height: 100px
+
+.dialogueFileImage
+  height: 100px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+
+.dialogueFileName
+  height: 20px
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+
+/*.dialogueFileImage,
+ *.dialogueFileImageFinished, img{
+ *    margin: 0 auto;
+ *}*/
+
+img
+  margin: 0 auto
+
+.dialogueFileImageA1 img
+  max-height: 100px
+  display: block
+  /*width: 60%;*/
+  height: 100%
+  padding: 0px
+  text-align: center
+  order: 1
+
+.dialogueFileImageB1 img
+  max-height: 100px
+  display: block
+  /*width: 60%;*/
+  height: 100%
+  padding: 0px
+  text-align: center
+  order: 2
+
+.dialogueFileImageC1 img
+  max-height: 100px
+  display: block
+  /*width: 60%;*/
+  height: 100%
+  padding: 0px
+  text-align: center
+  order: 3
+
+.dialogueFileImageD1 img
+  max-height: 100px
+  display: block
+  /*width: 60%;*/
+  height: 100%
+  padding: 0px
+  text-align: center
+  order: 4
+
+.dialogueFileImageA1, .dialogueFileNameA2
+  order: 1
+
+.dialogueFileImageB1, .dialogueFileNameB2
+  order: 2
+
+.dialogueFileImageC1, .dialogueFileNameC2
+  order: 3
+
+.dialogueFileImageD1, .dialogueFileNameD2
+  order: 4
+
+tr.finderDragAndDropDialogueTemplate
+  display: none
+
+/*tr{
+ *    height: 100px;
+ *}*/
+
+.dialogueFileImageTemplate
+  display: none
+  height: 100px
+
+.dialogueFileNameTemplate
+  display: none
+  height: 20px
+
+.dialogueFooter
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  align-items: flex-end
+
+#add, .dialogueFooter, #currentLocation, .dialogueFooter, #search, .dialogueFooter
+  flex-grow: 1
+
+div#finderDragAndDropDialogueWrapper
+  border: 3px solid orange
+#locationInput
+  width: 100%
+/*----------------------------------------------------------------------------*/
+/*file chooser button*/
+
+#fileChooserInput
+  visibility: hidden
+
+#fileChooserButton
+  -webkit-border-radius: 8
+  -moz-border-radius: 8
+  border-radius: 8px
+  font-family: Arial
+  color: #ffffff
+  font-size: 20px
+  background: #7D3750
+  padding: 10px 20px 10px 20px
+  text-decoration: none
+  display: inline-block
+  order: 2
+  &:hover
+    background: #7D3750
+    background-image: -webkit-linear-gradient(top, #7D3750, #88495F)
+    background-image: -moz-linear-gradient(top, #7D3750, #88495F)
+    background-image: -ms-linear-gradient(top, #7D3750, #88495F)
+    background-image: -o-linear-gradient(top, #7D3750, #88495F)
+    background-image: linear-gradient(to bottom, #7D3750, #88495F)
+    text-decoration: none
+
+/*---------------------------------------------------------*/
+/*profile*/
+
+.dlte-accnt
+  /*background-color: red;
+   *display: block;
+   *padding: 5px 27px;*/
+  display: block
+  -webkit-border-radius: 8
+  -moz-border-radius: 8
+  border-radius: 8px
+  color: #ffffff
+  font-size: 20px
+  background: #ff1919
+  padding: 10px 35px 10px 35px
+  text-decoration: none
+
+.chnge-psswd
+  /* background-color: #7d3750;
+   *display: block;
+   *padding: 5px 10px;*/
+  display: block
+  -webkit-border-radius: 8
+  -moz-border-radius: 8
+  border-radius: 8px
+  color: #ffffff
+  font-size: 20px
+  background: #7d3750
+  padding: 10px 20px 10px 20px
+  text-decoration: none
+
+button
+  font-size: 25px
+  color: white
+  font-family: 'Roboto', sans-serif
+  background-color: #7d3750
+
+.wrapper
+  display: flex
+  margin: 10px
+
+.profile-rghtSde
+  margin-left: 30%
+  margin-top: 4% 
+
+.profilePictureContainer
+  position: relative
+  height: 250px
+  width: 250px
+
+#profilePicture
+  @extend .profilePictureContainer
+  position: absolute
+
+.overlay
+  position: absolute
+  /*bottom: 0;*/
+  width: 100%
+  height: 100%
+  transition: all 0.3s ease-in-out
+  background-color: #0F0F0E
+  opacity: 0
+
+.profilePictureContainer:hover .overlay
+  opacity: 0.5
+
+#changeProfilePictureButton
+  @extend .profilePictureContainer
+  position: absolute
+  max-height: 20%
+  display: block
+  top: 45%
+
+
+/*--------------------------------------------------------------------------*/
+/*GOOGLE MAP*/
+
+#map
+  height: 80%
+  border-color: blue
+  border-width: 2px
+
+html, body
+  height: 100%
+
+/*--------------------------------------------------------------------------*/
+/*LOG IN PAGE*/
+
+.login
+  margin-left: 2%
+
+.input
+  height: 40px
+  width: 50%
+
+#submit_login
+  height: 50px
+  padding-top: 5px
+  padding-bottom: 5px
+  margin-top: 20px
+
+.aligner
+  padding-left: 10px
+
+fieldset
+  border: 1px
+
+/*--------------------------------------------------------------------------*/
+/*SIGN UP PAGE*/

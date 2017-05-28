@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Photo Map</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <script type="text/javascript" src="js/checkLogin.js"></script>
+    <script type="text/javascript" src="changeLogin.js"></script>
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="image/logo.png" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="16x16">
+    <link rel="icon" type="image/x-icon" href="image/logo.ico" sizes="32x32">
+</head>
+
+<body onload="add_dates()">
+    <header>
+        <a href="index.html">
+            <img src="image/photoMap Logo.PNG" alt="PhotoMap logo">
+        </a>
+    </header>
+    <ul>
+        <li><a href="index.html">Map</a></li>
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li id="signin-wrap"><a id="signin" href="login.html">Signin</a></li>
+    </ul>
+    <form class="login" id="login-form" oninput="validation()">
+        <h1>Sign up</h1>
+        <fieldset>
+            <legend>First Name</legend>
+            <input name="firstname" id="firstname" class="input" placeholder="First name" required/>
+        </fieldset>
+        <fieldset>
+            <legend>Last Name</legend>
+            <input name="lastname" id="lastname" class="input" placeholder="Last name" required/>
+        </fieldset>
+        <fieldset>
+            <legend>Day</legend>
+            <select id="dobday" class="input" name="dobday" required></select>
+        </fieldset>
+        <fieldset>
+            <legend>Month</legend>
+            <select id="dobmonth" class="input" name="dobmonth" required></select>
+        </fieldset>
+        <fieldset>
+            <legend>Year</legend>
+            <select id="dobyear" class="input" name="dobyear" required></select>
+        </fieldset>
+        <fieldset>
+            <legend>Country</legend>
+            <select id="country" class="input" name="country" required></select>
+        </fieldset>
+        <fieldset>
+            <legend>Email</legend>
+            <input type="email" name="username" class="input" placeholder="example@gmail.com" id="username" required/>
+        </fieldset>
+        <fieldset>
+            <legend>Password</legend>
+            <input type="password" name="password" class="input" placeholder="Password" id="password" required/>
+        </fieldset>
+        <fieldset>
+            <legend>Confirm Password</legend>
+            <input type="password" name="password2" class="input" placeholder="Password" id="password2" required/>
+        </fieldset>
+        <input type="submit" id="submitbutton" class="chnge-psswd" value="Sign up"/>
+    </form>
+    <script src="js/jquery.min.js" type="application/javascript"></script>
+    <script src="js/newuserform.js" type="application/javascript"></script>
+    <script type="application/javascript">
+    //on page load retrieve users IP and return location for auto-fill
+    $(document).ready(function() {
+        //freegeoip has made a nice and easy API in which we are thankful for
+        var data = $.getJSON('https://freegeoip.net/json/', function(data) {
+            document.getElementById("country").value = data.country_code;
+        });
+    });
+
+    $("#login-form").submit(function(e) {
+        // Stop the form from submitting so we can do it via AJAX
+        e.preventDefault();
+        $.post('backend/create_user.php', $('#login-form').serialize(), function(r) {
+            if (r.success == true) {
+                alert("User Created");
+                window.location = "index.html";
+            } else {
+                alert("User Creation Failed");
+            }
+        })
+    });
+    </script>
+</body>
+
+</html>

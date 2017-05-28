@@ -1,0 +1,20 @@
+Date: 28/05/17, Time: 01:58 PM  @cutierobot, #profile.js
+removed duplicate delte acccount button
+Date: 28/05/17, Time: 02:03 PM  @cutierobot, #removeUser.php 
+added check for phonegap 
+Date: 28/05/17, Time: 02:07 PM  @cutierobot, #functions.js 		
+removed extra bracket for function on line 113
+Date: 28/05/17, Time: 02:11 PM  @c, #functions.js
+changed var domainFiles = 'https://infs3202-mibb3.uqcloud.net/' 
+to var domainFiles = 'https://infs3202-mibb3.uqcloud.net/backend/functions/'
+Date: 28/05/17, Time: 02:18 PM  @cutierobot, #removeUser.php
+added try catch
+
+Date: 28/05/17, Time: 02:25 PM  @cu, #admin.php
+added back the cross domain header to let phonegap connect to db 
+Date: 28/05/17, Time: 02:35 PM  @cutierobot, #removeUser.php
+added logout fun to  
+
+
+
+

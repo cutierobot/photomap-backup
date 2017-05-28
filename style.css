@@ -1,0 +1,821 @@
+/*COLORS
+https://coolors.co/eaeaea-e7e6e6-7d3750-b85d7e-3a3636
+*/
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.overflowy {
+    overflow-y: hidden;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #b85d7e;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+}
+
+li a:hover {
+    background-color: #7d3750;
+}
+
+#signin-wrap {
+    text-align: right;
+    float: right;
+}
+
+h1 {
+    color: #b85d7e;
+    font-family: "Roboto", sans-serif;
+}
+
+
+/*===============================SNACKBAR/TOAST===============================*/
+
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+}
+
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
+/* Animations to fade the snackbar in and out */
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+
+/*================================DRAG AND DROP===============================*/
+
+
+/*tablet*/
+
+@media screen and (max-device-width: 767px) {
+    body {
+        /*background-color: black;*/
+    }
+    .dragAndDropWrapper {
+        visibility: hidden;
+    }
+    #fileChooserButton {
+        visibility: visible;
+    }
+    #finderDragAndDropDialogueFiles {
+        visibility: visible;
+    }
+}
+
+.loaderContainer {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+.loaderContainer #background {
+    background: #404040;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+}
+
+.loaderContainer #loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+div.dragAndDropWrapper {
+    position: relative;
+    height: 80%;
+    /*padding-top: 25px;*/
+}
+
+div#finderFiles {
+    border-bottom: 1px solid #404040;
+    background: #e7e6e6;
+    position: absolute;
+    overflow: auto;
+    width: 80%;
+    height: 80%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-width: 5px;
+    border-style: dashed;
+    border-color: #7d3750;
+}
+
+#icon {
+    order: 1;
+}
+
+div.finderDirectory {
+    float: left;
+    width: 150px;
+    height: 100px;
+    overflow: hidden;
+}
+
+div.finderDirectory:-webkit-drag {
+    opacity: 0.5;
+}
+
+div.finderIcon {
+    background: url("images/Folder 48x48.png") no-repeat center;
+    background-size: 48px 48px;
+    height: 56px;
+    width: 54px;
+    margin: 10px auto 3px auto;
+}
+
+div.finderIconSelected {
+    background-color: #cccccc;
+    border-radius: 5px;
+}
+
+div.finderDirectoryDrop > div.finderIcon {
+    background-color: #cccccc;
+    border-radius: 5px;
+    background-image: url("images/Open Folder 48x48.png");
+}
+
+div.finderDirectoryName {
+    text-align: center;
+}
+
+span.finderDirectoryNameSelected {
+    background: #3875d7;
+    border-radius: 8px;
+    color: white;
+    padding: 1px 7px;
+}
+
+div.finderDirectoryDrop > div.finderDirectoryName > span {
+    background: #3875d7;
+    border-radius: 8px;
+    color: white;
+    padding: 1px 7px;
+}
+
+div#finderDragAndDropDialogue {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1px;
+    border-radius: 4px;
+    display: none;
+    margin: auto;
+}
+
+div#finderDragAndDropDialogue h4 {
+    margin: 0;
+    padding: 10px;
+}
+
+img#finderDragAndDropDialogueActivity {
+    position: absolute;
+    top: 8px;
+    right: 50px;
+}
+
+div#finderDragAndDropDialogueProgressMeter {
+    position: absolute;
+    top: 11px;
+    right: 55px;
+    width: 210px;
+    height: 11px;
+    border-radius: 3px;
+    border: 1px solid #b5bbc8;
+    display: none;
+}
+
+div#finderDragAndDropDialogueProgressMeter div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0;
+    line-height: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: #e1e4e9;
+    width: 0;
+    display: none;
+}
+
+div#finderDragAndDropDialogueProgress {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+div#finderDragAndDropDialogueFiles {
+    position: absolute;
+    overflow: auto;
+    top: 35px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+div#finderDragAndDropDialogueFiles table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid green;
+}
+
+div#finderDragAndDropDialogueFiles table th {
+    background: #e9e9e9;
+    border: 1px solid #dedede;
+    text-align: left;
+    padding: 5px;
+}
+
+div#finderDragAndDropDialogueFiles table td {
+    text-overflow: ellipsis;
+    vertical-align: top;
+    font-size: 25px;
+    text-align: center;
+}
+
+td.finderDragAndDropDialogueFileIcon img {
+    max-height: 100px;
+}
+
+.dialogueFileImage {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.dialogueFileName {
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+img {
+    margin: 0 auto;
+}
+
+.dialogueFileImageA1 img {
+    max-height: 100px;
+    display: block;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+    order: 1;
+}
+
+.dialogueFileImageB1 img {
+    max-height: 100px;
+    display: block;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+    order: 2;
+}
+
+.dialogueFileImageC1 img {
+    max-height: 100px;
+    display: block;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+    order: 3;
+}
+
+.dialogueFileImageD1 img {
+    max-height: 100px;
+    display: block;
+    height: 100%;
+    padding: 0px;
+    text-align: center;
+    order: 4;
+}
+
+.dialogueFileImageA1,
+.dialogueFileNameA2 {
+    order: 1;
+}
+
+.dialogueFileImageB1,
+.dialogueFileNameB2 {
+    order: 2;
+}
+
+.dialogueFileImageC1,
+.dialogueFileNameC2 {
+    order: 3;
+}
+
+.dialogueFileImageD1,
+.dialogueFileNameD2 {
+    order: 4;
+}
+
+tr.finderDragAndDropDialogueTemplate {
+    display: none;
+}
+
+.dialogueFileImageTemplate {
+    display: none;
+    height: 100px;
+}
+
+.dialogueFileNameTemplate {
+    display: none;
+    height: 20px;
+}
+
+#add,
+.dialogueFooter,
+#currentLocation,
+.dialogueFooter,
+#search,
+.dialogueFooter #next {
+    padding: .2em;
+    margin: .3em;
+    flex-grow: 1;
+}
+
+.dialogueFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+#add,
+.dialogueFooter,
+#currentLocation,
+.dialogueFooter,
+#search,
+.dialogueFooter {
+    flex-grow: 1;
+}
+
+#locationInput {
+    width: 99%;
+    height: 42px;
+    border-color: #7d3750;
+    border-style: inset;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+
+/*file chooser button*/
+
+#fileChooserInput {
+    visibility: hidden;
+}
+
+#fileChooserButton {
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    background: #7D3750;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    order: 2;
+}
+
+#fileChooserButton:hover {
+    background: #7D3750;
+    background-image: -webkit-linear-gradient(top, #7D3750, #88495F);
+    background-image: -moz-linear-gradient(top, #7D3750, #88495F);
+    background-image: -ms-linear-gradient(top, #7D3750, #88495F);
+    background-image: -o-linear-gradient(top, #7D3750, #88495F);
+    background-image: linear-gradient(to bottom, #7D3750, #88495F);
+    text-decoration: none;
+}
+
+input[name=locationSet] {
+    display: none;
+}
+
+
+/*===================================PROFILE==================================*/
+
+.dlte-accnt {
+    display: block;
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 20px;
+    background: #ff1919;
+    padding: 10px 35px 10px 35px;
+    text-decoration: none;
+}
+
+.chnge-psswd {
+    display: block;
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 20px;
+    background: #7d3750;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+button {
+    font-size: 25px;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    background-color: #7d3750;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.wrapper {
+    display: flex;
+    margin: 10px;
+}
+
+.profile-rghtSde {
+    margin-left: 30%;
+    margin-top: 4%;
+}
+
+.profilePictureContainer,
+#profilePicture,
+#changeProfilePictureButton {
+    position: relative;
+    height: 250px;
+    width: 250px;
+}
+
+#profilePicture {
+    position: absolute;
+}
+
+.profile-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    background-color: #0F0F0E;
+    opacity: 0;
+}
+
+.profilePictureContainer:hover .profile-overlay,
+#profilePicture:hover .profile-overlay,
+#changeProfilePictureButton:hover .profile-overlay {
+    opacity: 0.5;
+}
+
+#changeProfilePictureButton {
+    position: absolute;
+    max-height: 20%;
+    display: block;
+    top: 45%;
+}
+
+input[name="changeProfile"] {
+    display: none;
+}
+
+.profile-rghtSde span {
+    font-weight: normal;
+}
+
+
+/*=================================GOOGLE MAP=================================*/
+
+#map {
+    height: 80%;
+    border-color: blue;
+    border-width: 2px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+
+/*=================================LOG IN PAGE================================*/
+
+.login {
+    margin-left: 2%;
+}
+
+.input {
+    height: 40px;
+    width: 50%;
+}
+
+#submit_login {
+    height: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.aligner {
+    padding-left: 10px;
+}
+
+fieldset {
+    border: 1px;
+}
+
+
+/*-------------------------------------------------------------------------- */
+
+
+/*SIGN UP PAGE */
+
+
+/*# sourceMappingURL=style.css.map */
+
+
+/*====================================MODAL===================================*/
+
+.box {
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    background-color: #7d3750;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button {
+    color: white;
+    text-decoration: none;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    margin: 70px auto;
+    background: #fff;
+    border-radius: 5px;
+    width: 50%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    overflow: auto;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    padding: 24px;
+    padding-bottom: 20px;
+    ;
+}
+
+.popup .close {
+    position: absolute;
+    bottom: 9px;
+    left: : 10px;
+    transition: all 200ms;
+    text-decoration: underline;
+    color: #333;
+}
+
+.popup .closex {
+    transition: all 200ms;
+    text-decoration: none;
+}
+
+.popup .close:hover {
+    color: #B85D7E;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+    padding: 24px;
+    padding-top: 0;
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+    .popup {
+        width: 70%;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.modal-footer {
+    float: right;
+    color: #B85D7E;
+    position: relative;
+    right: 0;
+    top: 50%;
+    width: 100%;
+}
+
+.modal-footer .dialog-buttons {
+    padding: 8px;
+    padding-left: 0;
+    float: right;
+    background: none;
+    color: #7d3750;
+    min-width: 64px;
+}
+
+.chnge-psswd a,
+.dlte-accnt a {
+    color: white;
+}
+
+.dialog-buttons a {
+    color: #7d3750;
+}
+
+
+/*===============================PASSWORD CHANGE==============================*/
+
+body.pass-change {
+    background-color: #B85D7E;
+}
+
+.card {
+    padding: calc(55%/2);
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: white;
+    margin: 50px;
+}
+
+.pass-change input[type=password] {
+    padding: 10px;
+    border: 1px solid lightgrey;
+}
+
+.pass-change .form-group {
+    display: block;
+    margin: 10px;
+}
+
+.form-group label {
+    padding: 5px;
+}
+
+#postman {
+    visibility: hidden;
+    color: #841616;
+}
